@@ -1,0 +1,17 @@
+---
+
+- name: Install haproxy repository
+  become: true
+  shell: add-apt-repository ppa:vbernat/haproxy-2.1 --yes
+
+- name: Install haproxy
+  become: true
+  apt: 
+    name: haproxy
+    update_cache: yes
+
+- name: Backup haproxy config
+  become: true
+  shell: cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.backup
+
+# TODO https://docs.ansible.com/ansible/latest/collections/community/general/ufw_module.html
